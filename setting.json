@@ -1,0 +1,14 @@
+{
+    "url": "https://www.naver.com",
+
+    "header": {
+        "User-Agent": "thread-test",
+        "Content-Type": "application/x-www-form-urlencoded"
+    },
+
+    "data": {
+        "user_email": "test@hanmail.net",
+        "arg1": "abcd",
+        "arg2": "1234"
+    }
+}
