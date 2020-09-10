@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+
+__author__ = "dyjang"
+
+
 from multiprocessing.pool import ThreadPool
 import datetime
 import requests
