@@ -3,7 +3,7 @@
 __author__ = "dyjang"
 
 
-from multiprocessing.pool import ThreadPool
+import concurrent.futures
 import datetime
 import requests
 import json
@@ -31,25 +31,27 @@ def url_req(c):
         print(f'[{c+1}] Error : {e}')
 
 
-def thread_req(cnt):
-    cnt = int(cnt)
-    with ThreadPool(cnt) as p:
-        hds = p.map(url_req, range(cnt))
-    print(f'[-] ThreadPool return : {hds}')
+def thread_req():
+
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        results = executor.map(url_req, range(5))
+
+        for result in results:
+            print(result)
 
 
 def main():
 
     # get argv
-    if len(sys.argv) < 2:
-        print("""
-        Please Input thread count in argv.
+    # if len(sys.argv) < 2:
+    #     print("""
+    #     Please Input thread count in argv.
 
-        Usage : ratelimit.py <thread count>
-        """)
-    else:
-        cnt = sys.argv[1]
-        thread_req(cnt)
+    #     Usage : ratelimit.py <thread count>
+    #     """)
+    # else:
+    # cnt = sys.argv[1]
+    thread_req()
 
 
 if __name__ == "__main__":
